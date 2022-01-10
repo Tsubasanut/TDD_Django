@@ -10,10 +10,11 @@ class NewVisitorTest(unittest.TestCase):
         self.browser = webdriver.Firefox()
 
     def tearDown(self) -> None:
-        self.browser.quit()
+        pass
+        #self.browser.quit()
 
     def test_can_start_a_list_and_retrieve_it_later(self):
-        set_trace()
+        #set_trace()
 
         # Edith has heard about a cool new online to-do app. She goes
         # to check out its homepage
