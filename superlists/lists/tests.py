@@ -49,9 +49,11 @@ class HomePageTest(TestCase):
         Item.objects.create(text='itemey1')
         Item.objects.create(text='itemey2')
 
-        response = self.client.post('/')
+        response = self.client.get('/')
+
         self.assertIn('itemey1', response.content.decode())
         self.assertIn('itemey2', response.content.decode())
+
 
 class ItemModelTest(TestCase):
 
