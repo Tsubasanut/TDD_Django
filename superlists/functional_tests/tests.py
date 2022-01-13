@@ -13,7 +13,8 @@ class NewVisitorTest(LiveServerTestCase):
         self.browser = webdriver.Firefox()
 
     def tearDown(self) -> None:
-        pass
+        #pass
+        self.browser.delete_all_cookies()
         #self.browser.quit()
 
     def wait_for_row_in_list_table(self, row_text):
@@ -81,8 +82,9 @@ class NewVisitorTest(LiveServerTestCase):
 
         ## We use a new browser session to make sure that no information
         ## of Edith's is coming through from cookies etc
-        self.browser.quit()
-        self.browser = webdriver.Firefox()
+        #self.browser.quit()
+        #self.browser = webdriver.Firefox()
+        self.browser.delete_all_cookies()
 
         # Francis visits the home page.  There is no sign of Edith's
         # list
@@ -109,6 +111,16 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertIn('Buy milk', page_text)
 
         # Satisfied, they both go back to sleep
+
+    def test_layout_and_styling(self):
+        self.browser.get(self.live_server_url)
+        self.browser.set_window_size(1024, 768)
+
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        self.assertAlmostEqual(inputbox.location['x'] + inputbox.size['width'] / 2,
+                               512,
+                               delta=10
+                               )
 
 #if __name__ == '__main__':
 #    unittest.main()
