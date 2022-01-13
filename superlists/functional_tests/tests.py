@@ -1,21 +1,21 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.common.exceptions import WebDriverException
 from pdb import set_trace
 
 MAX_WAIT = 10
 
-class NewVisitorTest(LiveServerTestCase):
+
+class NewVisitorTest(StaticLiveServerTestCase):
 
     def setUp(self) -> None:
         self.browser = webdriver.Firefox()
 
     def tearDown(self) -> None:
-        #pass
+        # pass
         self.browser.delete_all_cookies()
-        #self.browser.quit()
 
     def wait_for_row_in_list_table(self, row_text):
         start_time = time.time()
@@ -31,7 +31,7 @@ class NewVisitorTest(LiveServerTestCase):
                 time.sleep(0.5)
 
     def test_can_start_a_list_for_one_user(self):
-        #set_trace()
+        # set_trace()
 
         # Edith has heard about a cool new online to-do app. She goes
         # to check out its homepage
@@ -45,8 +45,8 @@ class NewVisitorTest(LiveServerTestCase):
         # She is invited to enter a to-do item straight away
         inputbox = self.browser.find_element_by_id('id_new_item')
         self.assertEqual(inputbox.get_attribute('placeholder'),
-                        'Enter a to-do item'
-                        )
+                         'Enter a to-do item'
+                         )
 
         # She types "Buy peacock feathers" into a text box (Edith's hobby
         # is tying fly-fishing lures)
@@ -80,10 +80,10 @@ class NewVisitorTest(LiveServerTestCase):
 
         # Now a new user, Francis, comes along to the site.
 
-        ## We use a new browser session to make sure that no information
-        ## of Edith's is coming through from cookies etc
-        #self.browser.quit()
-        #self.browser = webdriver.Firefox()
+        # We use a new browser session to make sure that no information
+        # of Edith's is coming through from cookies etc
+        # self.browser.quit()
+        # self.browser = webdriver.Firefox()
         self.browser.delete_all_cookies()
 
         # Francis visits the home page.  There is no sign of Edith's
@@ -122,5 +122,5 @@ class NewVisitorTest(LiveServerTestCase):
                                delta=10
                                )
 
-#if __name__ == '__main__':
+# if __name__ == '__main__':
 #    unittest.main()
