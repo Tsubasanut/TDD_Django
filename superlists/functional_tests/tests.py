@@ -13,11 +13,10 @@ class NewVisitorTest(StaticLiveServerTestCase):
 
     def setUp(self) -> None:
         self.browser = webdriver.Firefox()
-        # 	http://tsubottgtst478.byethost7.com
-        # SomeRandPass566
+        # 	http://tsub.ubuntu.local
         staging_server = os.environ.get('STAGING_SERVER')
         if staging_server:
-            self.live_server_url = 'http://'+staging_server
+            self.live_server_url = 'http://'+staging_server+':8000'
 
 
     def tearDown(self) -> None:
