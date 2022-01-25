@@ -36,7 +36,7 @@ else:
     DEB_ENV = os.environ
     DEBUG = True
     SECRET_KEY = 'insecure-key-for-dev'
-    ALLOWED_HOSTS = ['*']
+    ALLOWED_HOSTS = []
 
 
 # Application definition
