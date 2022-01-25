@@ -35,8 +35,8 @@ if 'DJANGO_DEBUG_FALSE' in os.environ:
 
 else:
     DEBUG = True
-    SECRET_KEY = 'insecure-key-for-dev'
-    ALLOWED_HOSTS = []
+    SECRET_KEY = 's)yn#ydi)o&fle1(-hx(d9i+s+6l+!-x*4h+^!4@)^#)yag4sj'
+    ALLOWED_HOSTS = ['*']
 
 # Application definition
 
