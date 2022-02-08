@@ -3,6 +3,7 @@ from lists.models import Item, List
 from django.utils.html import escape
 
 
+
 # Create your tests here.
 # noinspection PyUnresolvedReferences
 class HomePageTest(TestCase):
@@ -65,6 +66,17 @@ class ListViewTest(TestCase):
         )
 
         self.assertRedirects(response, f'/lists/{correct_list.id}/')
+
+    def test_validation_errors_end_up_on_lists_page(self):
+        list_1 = List.objects.create()
+        response = self.client.post(
+            f'/lists/{list_1.id}/',
+            data={'item_text': ''}
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'list.html')
+        self.assertContains(response, escape("You can't have an empty list item"))
 
 class NewListTest(TestCase):
 
