@@ -16,7 +16,7 @@ def view_list(request, list_id):
 
     if request.method == 'POST':
         try:
-            item = Item(text=request.POST['item_text'], list=filter_list)
+            item = Item(text=request.POST['text'], list=filter_list)
             item.full_clean()
             item.save()
             return redirect(filter_list)
@@ -27,13 +27,13 @@ def view_list(request, list_id):
 
 def new_list(request):
     list_1 = List.objects.create()
-    item = Item.objects.create(text=request.POST['item_text'], list=list_1)
+    item = Item.objects.create(text=request.POST['text'], list=list_1)
     try:
         item.full_clean()
         item.save()
     except ValidationError:
         list_1.delete()
         error = escape("You can't have an empty list item")
-        return render(request, 'home.html', {'error': error})
+        return render(request, 'home.html', {'error': error })
     return redirect(list_1)
 
