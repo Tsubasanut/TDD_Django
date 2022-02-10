@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.utils.html import escape
 from lists.models import Item, List
 from lists.forms import ItemForm, EMPTY_ITEM_ERROR
-from django.core.exceptions import ValidationError
 
 
 # Create your views here.
