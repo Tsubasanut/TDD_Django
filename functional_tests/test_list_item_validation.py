@@ -18,7 +18,6 @@ class ItemValidationTest(FunctionalTest):
             '#id_text:invalid'
         ))
 
-
         # She tries again with some text for the item, which now works
         self.get_item_input_box().send_keys('Buy milk')
         self.wait_for(lambda: self.browser.find_element_by_css_selector(
